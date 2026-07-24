@@ -785,7 +785,7 @@ nav.sliced-nav ul li a:hover {
 /* Responsive & Apple-Like Fluid Mobile Breakpoints */
 @media (max-width: 900px) {
     .top-bar {
-        padding: 8px 20px;
+        
     }
     .top-bar-left {
         display: none;
@@ -796,13 +796,12 @@ nav.sliced-nav ul li a:hover {
     }
 
     nav.sliced-nav {
-        height: 70px;
-        padding: 0 20px;
+        height: 50px;
+        
     }
 
     .nav-left-blue {
-        width: 60%;
-        padding-left: 20px;
+        width: 50%;
         clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
     }
 
@@ -817,10 +816,10 @@ nav.sliced-nav ul li a:hover {
 
     .nav-links {
         position: fixed;
-        top: 70px;
+        top: 105px;
         left: 0;
         width: 100vw;
-        height: calc(100vh - 70px);
+        height: 400px;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
@@ -858,7 +857,7 @@ nav.sliced-nav ul li a:hover {
         padding-left: 30px;
         height: auto;
         min-height: 80vh;
-        padding-top: 60px;
+        padding-top: 20px;
         padding-bottom: 60px;
     }
 
@@ -899,6 +898,6 @@ nav.sliced-nav ul li a:hover {
 
     .card {
         width: 100%;
-        max-width: 360px;
+        max-width: 260px;
     }
 }
