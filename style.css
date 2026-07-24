@@ -1,10 +1,16 @@
-body {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: #f4f6fa;
+:root {
+    --apple-ease: cubic-bezier(0.25, 1, 0.5, 1);
+    --apple-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Top Bar Styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f6fa;
+    color: #111;
+    -webkit-font-smoothing: antialiased;
+}
+
 .top-bar {
     background: #0056b3;
     color: white;
@@ -23,6 +29,11 @@ body {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    transition: opacity 0.3s var(--apple-ease);
+}
+
+.top-bar-right .login-link:hover {
+    opacity: 0.75;
 }
 
 nav.sliced-nav {
@@ -34,24 +45,26 @@ nav.sliced-nav {
     overflow: hidden;
 }
 
-/*this is for the left blue section*/
 .nav-left-blue {
     background-color: #0056b3;
-    width: 15%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 35%;
     display: flex;
     align-items: center;
     padding-left: 60px;
     position: relative;
     clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+    transition: width 0.5s var(--apple-ease);
 }
 
 .logo {
     font-size: 28px;
     font-weight: bold;
     color: #ffffff;
+    letter-spacing: -0.5px;
 }
 
-/*this is for the right white section*/
 .nav-right-white {
     background-color: #ffffff;
     flex: 1;
@@ -62,7 +75,6 @@ nav.sliced-nav {
     gap: 20px;
 }
 
-/*this is for the navigation links*/
 nav.sliced-nav ul {
     display: flex;
     list-style: none;
@@ -76,11 +88,13 @@ nav.sliced-nav ul li a {
     color: #111;
     font-weight: 700;
     font-size: 14px;
-    transition: color 0.2s;
+    transition: color 0.3s var(--apple-ease), transform 0.3s var(--apple-ease);
+    display: inline-block;
 }
 
 nav.sliced-nav ul li a:hover {
     color: #0056b3;
+    transform: translateY(-2px);
 }
 
 .actions {
@@ -96,18 +110,19 @@ nav.sliced-nav ul li a:hover {
     color: #0056b3;
     width: 40px;
     height: 40px;
-    border-radius: 4px;
+    border-radius: 50%;
     font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, color 0.2s;
+    transition: all 0.4s var(--apple-spring);
 }
 
 .search-btn:hover {
     background-color: #0056b3;
     color: #fff;
+    transform: scale(1.08);
 }
 
 .get-started {
@@ -115,17 +130,60 @@ nav.sliced-nav ul li a:hover {
     color: white;
     border: none;
     padding: 12px 25px;
-    border-radius: 4px;
+    border-radius: 980px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.4s var(--apple-spring);
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
 }
 
 .get-started:hover {
     background-color: #004085;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
 }
 
-/* Hero Section Styles */
+.get-started:active {
+    transform: scale(0.96);
+}
+
+/* Mobile Hamburger Menu Button */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 101;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #0056b3;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 3px;
+    transition: all 0.4s var(--apple-ease);
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(10.5px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-10.5px) rotate(-45deg);
+}
+
 .hero {
     height: 85vh;
     background: url('pic1.jpg') center/cover;
@@ -136,7 +194,6 @@ nav.sliced-nav ul li a:hover {
     overflow: hidden;
 }
 
-/* Overlay for darkening the hero image */
 .overlay {
     position: absolute;
     top: 0;
@@ -144,6 +201,7 @@ nav.sliced-nav ul li a:hover {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
 }
 
 .hero-blue-shape {
@@ -152,12 +210,14 @@ nav.sliced-nav ul li a:hover {
     top: 0;
     width: 45%;
     height: 100%;
-    background-color: #0057b371;
+    background: #4d6ac87c;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
     z-index: 2;
+    transition: width 0.6s var(--apple-ease);
 }
 
-/* Hero Content Styles */
 .hero .content {
     position: relative;
     color: white;
@@ -176,6 +236,7 @@ nav.sliced-nav ul li a:hover {
     margin-top: 0;
     margin-bottom: 15px;
     font-weight: 700;
+    letter-spacing: -1px;
 }
 
 .hero .content p {
@@ -185,8 +246,6 @@ nav.sliced-nav ul li a:hover {
     margin-bottom: 25px;
 }
 
-
-/* Right Sidebar Styles */
 .right-sidebar {
     position: absolute;
     right: 30px;
@@ -211,11 +270,12 @@ nav.sliced-nav ul li a:hover {
     color: #ffffff;
     text-decoration: none;
     font-size: 16px;
-    transition: color 0.2s;
+    transition: transform 0.3s var(--apple-spring), color 0.3s var(--apple-ease);
 }
 
 .right-sidebar .social-icons a:hover {
     color: #90cdf4;
+    transform: scale(1.2);
 }
 
 .right-sidebar .vertical-text {
@@ -227,13 +287,12 @@ nav.sliced-nav ul li a:hover {
     text-transform: uppercase;
 }
 
-
-/*this is for the about section*/
 .about-section {
-    padding: 80px 20px;
-    background-color: #8faff0;
+    padding: 100px 20px;
+    background-color: #066eaf65;
     position: relative;
     z-index: 5;
+    color: white;
 }
 
 .about-container {
@@ -260,10 +319,11 @@ nav.sliced-nav ul li a:hover {
 
 .img-box {
     position: absolute;
-    border-radius: 6px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: transform 0.4s ease, z-index 0.4s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.6s;
+    will-change: transform;
 }
 
 .img-box img {
@@ -271,9 +331,13 @@ nav.sliced-nav ul li a:hover {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Positioning for the three images in the grid */
+.img-box:hover img {
+    transform: scale(1.06);
+}
+
 .top-left {
     top: 0;
     left: 0;
@@ -299,36 +363,41 @@ nav.sliced-nav ul li a:hover {
 }
 
 .image-grid:hover .top-left {
-    transform: translate(-15px, -15px) scale(1.05);
+    transform: translate(-20px, -20px) scale(1.03);
     z-index: 3;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 
 .image-grid:hover .top-right {
-    transform: translate(15px, -15px) scale(1.05);
+    transform: translate(20px, -20px) scale(1.03);
     z-index: 3;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 
 .image-grid:hover .bottom-left {
-    transform: translate(-15px, 15px) scale(1.05);
+    transform: translate(-20px, 20px) scale(1.03);
     z-index: 3;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 
-/* Floating Logo Card Styles */
 .floating-logo-card {
     position: absolute;
     top: 45%;
     left: 40%;
     transform: translate(-50%, -50%);
-    background: #0f3263;
+    background: rgba(27, 85, 99, 0.605);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
     z-index: 4;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s;
 }
 
 .image-grid:hover ~ .floating-logo-card {
     transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
 }
 
 .brand-logo-img {
@@ -357,6 +426,7 @@ nav.sliced-nav ul li a:hover {
     color: #111;
     line-height: 1.3;
     margin-bottom: 20px;
+    letter-spacing: -0.5px;
 }
 
 .about-content h2 span {
@@ -364,7 +434,7 @@ nav.sliced-nav ul li a:hover {
 }
 
 .about-content p {
-    font-size: 14px;
+    font-size: 15px;
     color: #666;
     line-height: 1.6;
     margin-bottom: 25px;
@@ -379,42 +449,48 @@ nav.sliced-nav ul li a:hover {
 .check-list li {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-size: 14px;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-weight: 500;
 }
 
 .check-icon {
     color: #ffffff;
     background-color: #0056b3;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     font-size: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 3px;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .strategy-box {
     background: #ffffff;
-    border: 1px solid #e2e8f0;
-    padding: 15px 20px;
-    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 18px 22px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: transform 0.4s var(--apple-spring);
+}
+
+.strategy-box:hover {
+    transform: translateY(-3px);
 }
 
 .strategy-icon {
     background-color: #0056b3;
     color: white;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -442,8 +518,8 @@ nav.sliced-nav ul li a:hover {
 }
 
 .phone-circle {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
     border: 2px solid #0056b3;
     border-radius: 50%;
     display: flex;
@@ -451,6 +527,13 @@ nav.sliced-nav ul li a:hover {
     justify-content: center;
     color: #0056b3;
     font-size: 18px;
+    transition: transform 0.4s var(--apple-spring), background-color 0.3s, color 0.3s;
+}
+
+.phone-circle:hover {
+    background-color: #0056b3;
+    color: #fff;
+    transform: scale(1.1);
 }
 
 .call-label {
@@ -482,26 +565,32 @@ nav.sliced-nav ul li a:hover {
 }
 
 .card {
-    
-    background: linear-gradient(135deg, #d2d5d88f, #216ad1);
-    width: 300px;
+    background: #4d6ac87c;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 290px;
     padding: 40px 30px;
-    border-radius: 6px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
 }
 
 .card-icon {
-    font-size: 40px;
+    font-size: 28px;
     margin-bottom: 25px;
+    transition: transform 0.4s var(--apple-spring);
+}
+
+.card:hover .card-icon {
+    transform: scale(1.15) rotate(5deg);
 }
 
 .card h3 {
@@ -509,6 +598,7 @@ nav.sliced-nav ul li a:hover {
     color: #1a1a1a;
     margin-bottom: 15px;
     font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .card p {
@@ -529,10 +619,10 @@ nav.sliced-nav ul li a:hover {
     font-size: 14px;
     text-align: center;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 980px;
     z-index: 1;
     margin-top: auto;
-    transition: color 0.4s ease;
+    transition: color 0.4s var(--apple-ease), border-color 0.4s var(--apple-ease);
 }
 
 .card-btn::before {
@@ -544,7 +634,7 @@ nav.sliced-nav ul li a:hover {
     height: 100%;
     background-color: #0056b3;
     z-index: -1;
-    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-btn:hover::before {
@@ -559,7 +649,7 @@ nav.sliced-nav ul li a:hover {
 .site-footer {
     background-color: #0b0f19;
     color: #ffffff;
-    padding: 60px 20px;
+    padding: 80px 20px;
 }
 
 .footer-container {
@@ -576,9 +666,14 @@ nav.sliced-nav ul li a:hover {
     background: #ffffff;
     color: #333333;
     width: 300px;
-    border-radius: 4px;
+    border-radius: 12px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    transition: transform 0.4s var(--apple-spring);
+}
+
+.footer-card:hover {
+    transform: translateY(-5px);
 }
 
 .footer-card-header {
@@ -611,12 +706,12 @@ nav.sliced-nav ul li a:hover {
 
 .footer-socials {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
 .social-icon {
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     border: 1px solid #ddd;
     border-radius: 50%;
     display: flex;
@@ -625,12 +720,14 @@ nav.sliced-nav ul li a:hover {
     color: #0056b3;
     text-decoration: none;
     font-size: 12px;
-    transition: 0.3s;
+    transition: all 0.4s var(--apple-spring);
 }
 
 .social-icon:hover {
     background-color: #0056b3;
     color: #fff;
+    transform: scale(1.15);
+    border-color: #0056b3;
 }
 
 .footer-col {
@@ -651,22 +748,157 @@ nav.sliced-nav ul li a:hover {
 }
 
 .footer-col ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .footer-col ul li a {
     color: #a0aec0;
     text-decoration: none;
     font-size: 13px;
-    transition: color 0.2s;
+    transition: color 0.3s var(--apple-ease), padding-left 0.3s var(--apple-ease);
 }
 
 .footer-col ul li a:hover {
     color: #ffffff;
+    padding-left: 5px;
 }
 
 .contact-info p {
     font-size: 13px;
     color: #a0aec0;
     margin-bottom: 12px;
+}
+
+/* --- Apple-Like Scroll Reveal Animation Styles --- */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive & Apple-Like Fluid Mobile Breakpoints */
+@media (max-width: 900px) {
+    .top-bar {
+        padding: 8px 20px;
+    }
+    .top-bar-left {
+        display: none;
+    }
+    .top-bar-right {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav.sliced-nav {
+        height: 70px;
+        padding: 0 20px;
+    }
+
+    .nav-left-blue {
+        width: 60%;
+        padding-left: 20px;
+        clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .nav-right-white {
+        padding-right: 0;
+        justify-content: flex-end;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 70px);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s var(--apple-ease);
+        z-index: 99;
+    }
+
+    .nav-links.mobile-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-links li a {
+        font-size: 22px;
+    }
+
+    .actions .search-btn, 
+    .actions .get-started {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .hero {
+        padding-left: 30px;
+        height: auto;
+        min-height: 80vh;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .hero-blue-shape {
+        width: 100%;
+        opacity: 0.85;
+        clip-path: polygon(0 50%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .hero .content h2 {
+        font-size: 2.5rem;
+    }
+
+    .right-sidebar {
+        display: none;
+    }
+
+    .about-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .about-images-wrapper {
+        width: 100%;
+        max-width: 360px;
+        height: 360px;
+        margin: 0 auto;
+    }
+
+    .top-left { width: 190px; height: 160px; }
+    .top-right { width: 160px; height: 210px; }
+    .bottom-left { width: 210px; height: 170px; }
+
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 360px;
+    }
 }
